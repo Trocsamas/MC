@@ -1,5 +1,3 @@
-// JS CANNY EDGE DETECTOR (HAY QUE MODIFICARLO)
-
 'use strict';
 const MAX_PRECISION = false;
 const precision = 2;

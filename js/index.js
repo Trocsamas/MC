@@ -1,5 +1,3 @@
-// JS CANNY EDGE DETECTOR (HAY QUE MODIFICARLO)
-
 window.appData = {};
 const canvasFrom = document.querySelector('.image--from');
 const canvasGrayscale = document.querySelector('.image--grayscale');
@@ -18,7 +16,7 @@ const $cancel = document.querySelector('.js_cancel');
 const $result = document.querySelector('.result');
 let worker;
 function initWorker() {
-    worker = new Worker('./dist/worker.js');
+    worker = new Worker('./js/worker.js');
     worker.addEventListener('message', onWorkerMessage, false);
 }
 $file.addEventListener('change', event => {
