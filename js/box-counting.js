@@ -147,7 +147,7 @@ function boxCounting(){
   // console.log(x, y)
   // console.log(getFractalDimension(x, y));
   // console.log(indices);
-  crearGrid(width, height, x.length-1);
+  crearGrid(canvasResult.clientWidth, canvasResult.clientHeight, 5);
 
   return getFractalDimension(x,y);
 }
