@@ -73,7 +73,6 @@ function cargarDirectamente(){
 
   let canvasColor = canvasResult.getContext("2d").getImageData(0,0, width, height);
   let matrix = rgbaToBw(canvasColor.data, width);
-  console.log(matrix);
 }
 
 function sum(ns){
@@ -159,8 +158,6 @@ function boxCounting(){
     x.push(Math.log(resultados[i]));
     y.push(Math.log(Math.pow(4, i+1)));
   }
-
-  console.log(resultados, x, y);
 
   // console.log(resultados);
   // console.log(x, y)
@@ -360,7 +357,7 @@ function drawHitBox(){
   style += 'height:'+height.toString()+'px;';
   canvas.style = style;
 
-  mostrar = (mostrar+1)%resultados.length;
+  mostrar = resultados.length>0 & resultados[mostrar]<(resultados[mostrar+1]) ? (mostrar+1)%resultados.length:0;
 }
 
 function clearCanvas(){
