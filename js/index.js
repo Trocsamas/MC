@@ -44,7 +44,8 @@ $file.addEventListener('change', event => {
             canvas.style.height = newWidth * (canvas.height / canvas.width) + 'px';
         });
     })
-        .then(showControls);
+        .then(showControls)
+        .then(clearCanvas());
 });
 $submit.addEventListener('click', event => {
     window.appData.ut = parseFloat($ut.value);

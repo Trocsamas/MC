@@ -55,6 +55,7 @@
             <div class="row">
               <div class="column">
                 <button class="button js_submit">Encontrar los bordes</button>
+                <button class="button js_submit" onclick="cargarDirectamente()">Cargar directamente</button>
                 <button class="button cancel js_cancel">Cancel</button>
               </div>
             </div>
@@ -107,10 +108,12 @@
 
           <section class="js_image--result">
             <canvas class="image--result"></canvas>
+            <canvas id='image-hit-box' class='solapar'></canvas>
             <grid id='rejilla' class='solapar'></grid>
             
             <br>
             <button onclick='boxCounting()'>Empezar box counting</button>
+            <button onclick='drawHitBox()'>Mostrar hit box</button>
           </section>
         </div>
       </div>

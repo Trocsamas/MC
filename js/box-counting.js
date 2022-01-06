@@ -60,7 +60,21 @@
 
 const PROFUNDIDAD_LIMITE = 20;
 let resultados;
-let indices = [];
+let indices;
+let celdas;
+let mostrar = 0;
+
+function cargarDirectamente(){
+  
+  activateImage('js_image--result');
+  canvasResult.getContext('2d').drawImage(window.appData.img, 0, 0);
+  let width = canvasResult.width;
+  let height = canvasResult.height;
+
+  let canvasColor = canvasResult.getContext("2d").getImageData(0,0, width, height);
+  let matrix = rgbaToBw(canvasColor.data, width);
+  console.log(matrix);
+}
 
 function sum(ns){
   let n = 0;
@@ -123,9 +137,12 @@ function boxCounting(){
 
   resultados = [];
   escalas = [];
+  indices = [];
+  celdas = [];
   for(let i = 0; i < PROFUNDIDAD_LIMITE; i++){
     resultados.push(0);
     indices.push([]);
+    celdas.push([]);
   }
 
   let x = [];
@@ -143,12 +160,17 @@ function boxCounting(){
     y.push(Math.log(Math.pow(4, i+1)));
   }
 
+  console.log(resultados, x, y);
+
   // console.log(resultados);
   // console.log(x, y)
   // console.log(getFractalDimension(x, y));
   // console.log(indices);
-  crearGrid(canvasResult.clientWidth, canvasResult.clientHeight, 5);
 
+  // crearGrid(canvasResult.clientWidth, canvasResult.clientHeight, 5);
+  // drawHitBox(canvasResult.clientWidth, canvasResult.clientHeight, 8);//////////////////////////////////////////////////////////
+
+  console.log(getFractalDimension(x,y));
   return getFractalDimension(x,y);
 }
 
@@ -170,29 +192,40 @@ function _boxCounting(matrix, piX, piY, pfX, pfY, profundidad){
 
   if(hasW && hasB){
     let resultado = 0
-    let pmX = Math.floor((pfX+piX)/2);
-    let pmY = Math.floor((pfY+piY)/2);
+    let pmX = (pfX+piX)/2;
+    let pmY = (pfY+piY)/2;
 
-    resultado += _boxCounting(matrix, piX, piY, pmX, pmY, profundidad+1); // Primer cuarto
-    resultado += _boxCounting(matrix, pmX, piY, pfX, pmY, profundidad+1); // Segundo cuarto
-    resultado += _boxCounting(matrix, piX, pmY, pmX, pfY, profundidad+1); // Tercer cuarto
-    resultado += _boxCounting(matrix, pmX, pmY, pfX, pfY, profundidad+1); // Cuarto cuarto
+    resultado += _boxCounting(matrix, piX, piY, Math.floor(pmX), Math.floor(pmY), profundidad+1); // Primer cuarto
+    resultado += _boxCounting(matrix, Math.ceil(pmX), piY, pfX, Math.floor(pmY), profundidad+1); // Segundo cuarto
+    resultado += _boxCounting(matrix, piX, Math.ceil(pmY), Math.floor(pmX), pfY, profundidad+1); // Tercer cuarto
+    resultado += _boxCounting(matrix, Math.ceil(pmX), Math.ceil(pmY), pfX, pfY, profundidad+1); // Cuarto cuarto
     resultados[profundidad] += resultado;
 
-    let trozos = Math.pow(2, profundidad);
-    let limiteAncho = Math.floor(matrix[0].length/trozos);
-    let limiteAlto = Math.floor(matrix.length/trozos);
-    let j = Math.floor(piX/limiteAncho);
-    let i = Math.floor(piY/limiteAlto);
-    let celda = i*Math.pow(2, profundidad)+j;
-    indices[profundidad].push(celda);
+    // let trozos = Math.pow(2, profundidad);
+    // let limiteAncho = Math.floor(matrix[0].length/trozos);
+    // let limiteAlto = Math.floor(matrix.length/trozos);
+    // let j = Math.floor(piX/limiteAncho);
+    // let i = Math.floor(piY/limiteAlto);
+    // let celda = i*Math.pow(2, profundidad)+j;
+    // indices[profundidad].push(celda);
+    celdas[profundidad].push(new Celda(piX, piY, pfX, pfY));
     
     return 1;
   }
   else {
     return 0
   }
+}
 
+class Celda{
+  constructor(piX, piY, pfX, pfY){
+    let wr = canvasResult.clientWidth/canvasResult.width;
+    let hr = canvasResult.clientHeight/canvasResult.height;
+    this.x = piX*wr;
+    this.y = piY*hr;
+    this.width = (pfX-piX)*wr;
+    this.height = (pfY-piY)*hr;
+  }
 }
 
 //  Primer cuarto | Segundo cuarto
@@ -204,7 +237,7 @@ function rgbaToBw(data,width){
   let matrix = [];
   
   for(let i = 0; i < data.length; i += 4){
-    lista.push(data[i]+data[i+1]+data[i+2] > 0 ? 1:0);
+    lista.push(data[i]+data[i+1]+data[i+2] < 255 ? 1:0);
   }
 
   for(let e = 0; e < lista.length; e+=width){
@@ -284,7 +317,7 @@ for(i = 0){
  * 4  | 5  | 6  | 7
  * -----------------
  * 8  | 9  | 10 | 11
- * -----------------
+ * -----------------s
  * 12 | 13 | 14 | 15
  * 
  * 0 | 1 |    2 | 3    | 4 | 5 |    6 | 7 |
@@ -292,3 +325,46 @@ for(i = 0){
 
 
 */
+
+function drawHitBox(){
+  let width = canvasResult.clientWidth;
+  let height = canvasResult.clientHeight;
+  let depth = mostrar;
+
+  let canvas = document.querySelector('#image-hit-box');
+  
+  canvas.width = width;
+  canvas.height = height;
+
+  let ctx = canvas.getContext('2d');
+
+  ctx.fillStyle = 'rgba(255, 255, 0, 0.5)';
+  
+  // let rows = Math.pow(2, depth); // Same as columns
+  // let cell_width = width/rows;
+  // let cell_height = height/rows;
+  // for(let i = 0; i < indices[depth].length; i++){
+  //   let index = indices[depth][i];
+  //   let x = (index%rows)*cell_width;
+  //   let y = (Math.floor(index/rows))*cell_height;
+  //   ctx.fillRect(x, y, cell_width, cell_height);
+  // }
+
+  for(let i = 0; i < celdas[depth].length; i++){
+    let celda = celdas[depth][i];
+    ctx.fillRect(celda.x, celda.y, celda.width, celda.height);
+  }
+
+  let style = '';
+  style += 'width:'+width.toString()+'px;';
+  style += 'height:'+height.toString()+'px;';
+  canvas.style = style;
+
+  mostrar = (mostrar+1)%resultados.length;
+}
+
+function clearCanvas(){
+  let canvas = document.querySelector('#image-hit-box');
+  let ctx = canvas.getContext('2d');
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+}
