@@ -20,6 +20,11 @@ function initWorker() {
     worker.addEventListener('message', onWorkerMessage, false);
 }
 $file.addEventListener('change', event => {
+
+    let bt1 = document.querySelector('#display_grid');
+    let bt2 = document.querySelector('#clear_grid');
+    bt1.disabled = true;
+    bt2.disabled = true;
     const file = $file.files[0];
     readFileAsDataURL(file)
         .then(loadImage)

@@ -32,6 +32,9 @@
 </head>
 
 <body>
+
+  
+
     <div class="container">      
       <div class="row">
         <div class="column">
@@ -47,29 +50,29 @@
           <div class="js_controls controls">
             <div class="row">
               <div class="column">
-                <input type="text" class="js_lt" placeholder="Lower Treshold (0-1)">
-                <input type="text" class="js_ut" placeholder="Upper Treshold (0-1)">
+                <input type="text" class="js_lt" placeholder="Umbral Inferior(0-1)">
+                <input type="text" class="js_ut" placeholder="Umbral Superior (0-1)">
               </div>
             </div>
 
             <div class="row">
               <div class="column">
-                <button class="button js_submit">Encontrar los bordes</button>
-                <button class="button js_submit" onclick="cargarDirectamente()">Cargar directamente</button>
-                <button class="button cancel js_cancel">Cancel</button>
+                <button class="btn btn-primary js_submit m-1">Encontrar los bordes</button>
+                <button class="btn btn-primary js_submit m-1" onclick="cargarDirectamente()">Cargar directamente</button>
+                <button class="btn btn-primary cancel js_cancel m-1">Cancel</button>
               </div>
             </div>
           </div>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" style="display: none;">
         <div class="column ta-c">
           <div class="js_status"></div>
         </div>
       </div>
 
-      <div class="row">
+      <div class="row" style="display: none;">
         <div class="column ta-c">
           <div class="image-nav js_image-nav">
             <ul>
@@ -110,8 +113,9 @@
             <canvas class="image--result"></canvas>
             <canvas id='image-hit-box' class='solapar'></canvas>         
             <br>
-            <button onclick='boxCounting()'>Empezar box counting</button>
-            <button onclick='drawHitBox()'>Mostrar hit box</button>
+            <button onclick='boxCounting()' class="btn btn-primary m-1">Empezar box counting</button>
+            <button id="display_grid" onclick='drawHitBox()' class="btn btn-primary m-1" disabled>Mostrar rejilla profundidad <span id="depth">0</span> </button>
+            <button id="clear_grid" onclick='clearCanvas()' class="btn btn-primary m-1" disabled>Borrar rejilla</button>
           </section>
         </div>
       </div>

@@ -64,8 +64,15 @@ let indices;
 let celdas;
 let mostrar = 0;
 
+
 function cargarDirectamente(){
-  
+
+
+  let bt1 = document.querySelector('#display_grid');
+  let bt2 = document.querySelector('#clear_grid');
+  bt1.disabled = true;
+  bt2.disabled = true;
+
   activateImage('js_image--result');
   canvasResult.getContext('2d').drawImage(window.appData.img, 0, 0);
   let width = canvasResult.width;
@@ -133,6 +140,12 @@ function boxCounting(){
 
   let canvasColor = canvasResult.getContext("2d").getImageData(0,0, width, height);
   let matrix = rgbaToBw(canvasColor.data, width);
+
+
+  let bt1 = document.querySelector('#display_grid');
+  let bt2 = document.querySelector('#clear_grid');
+  bt1.disabled = false;
+  bt2.disabled = false;
 
   resultados = [];
   escalas = [];
@@ -323,7 +336,7 @@ for(i = 0){
 
 */
 
-function drawHitBox(){
+function drawHitBox(operation){
   let width = canvasResult.clientWidth;
   let height = canvasResult.clientHeight;
   let depth = mostrar;
@@ -357,6 +370,9 @@ function drawHitBox(){
   style += 'height:'+height.toString()+'px;';
   canvas.style = style;
 
+  let span = document.querySelector('#depth');
+  span.innerHTML = mostrar.toString();
+  
   mostrar = resultados.length>0 & resultados[mostrar]<(resultados[mostrar+1]) ? (mostrar+1)%resultados.length:0;
 }
 
