@@ -20,6 +20,8 @@ function initWorker() {
     worker.addEventListener('message', onWorkerMessage, false);
 }
 $file.addEventListener('change', event => {
+    document.getElementById('fractal-result').innerHTML = '';
+    document.getElementById('depth').innerHTML = '0';
     const file = $file.files[0];
     readFileAsDataURL(file)
         .then(loadImage)
@@ -48,6 +50,21 @@ $file.addEventListener('change', event => {
         .then(clearCanvas());
 });
 $submit.addEventListener('click', event => {
+    let utValue = parseFloat($ut.value);
+    let ltValue = parseFloat($lt.value);
+    
+    if(isNaN(utValue) || utValue < 0.0){
+        $ut.value = 0.0;
+    }else if(utValue > 1){
+        $ut.value = 1.0;
+    }
+
+    if(isNaN(ltValue) || ltValue < 0.0){
+        $lt.value = 0.0;
+    }else if(ltValue > 1){
+        $lt.value = 1.0;
+    }
+
     window.appData.ut = parseFloat($ut.value);
     window.appData.lt = parseFloat($lt.value);
     initWorker();

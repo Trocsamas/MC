@@ -76,7 +76,7 @@
               <div class="column">
                 <button class="btn btn-primary js_submit m-1">Encontrar los bordes</button>
                 <button class="btn btn-primary js_submit m-1" onclick="loadDirectly()">Cargar directamente</button>
-                <button class="btn btn-primary cancel js_cancel m-1">Cancel</button>
+                <button class="btn btn-primary cancel js_cancel m-1">Cancelar</button>
               </div>
             </div>
           </div>
@@ -133,9 +133,10 @@
             <canvas class="image--result"></canvas>
             <canvas id='image-hit-box' class='image-overlay'></canvas>         
             <br>
-            <button onclick='boxCounting()' class="btn btn-primary m-1">Empezar box counting</button>
+            <button onclick='boxCounting()' class="btn btn-primary m-1">Calcular dimensión fractal</button>
             <button id="display_grid" onclick='drawCountedCells()' class="btn btn-primary m-1" disabled>Mostrar rejilla profundidad <span id="depth">0</span> </button>
-            <button id="clear_grid" onclick='clearCanvas()' class="btn btn-primary m-1" disabled>Borrar rejilla</button>
+            <button id="clear_grid" onclick='clearCanvas()' class="btn btn-primary m-1" disabled>Ocultar rejilla</button>
+            <h3 id='fractal-result' class='pt-5'></h3>
           </section>
         </div>
       </div>

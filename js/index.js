@@ -29,6 +29,7 @@ function drawCountedCells() {
     canvas.style = style;
 
     depthToDisplay = (depthToDisplay+1)%maxDisplayDepth;
+    document.getElementById('depth').innerHTML = depthToDisplay.toString();
 }
 
 function clearCanvas() {
