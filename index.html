@@ -28,87 +28,115 @@
 </head>
 
 <body>
-  <div class="container">
-    <div class="row">
-      <div class="column">
-        <div class="upload-image ta-c pb-md">
-          <input type="file" id="image" class="input--file js_image">
-          <label for="image">Elige una imagen</label>
+
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="./index.html">Cálculo de la Dimensión Fractal</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <li class="nav-item active">
+          <a class="nav-link" href="./index.html">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./memoria.html">Memoria</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./about-Us.html">About us</a>
+        </li>
+      </ul>
+    </div>
+  </nav>
+
+    <div class="container">      
+      <div class="row">
+        <div class="column">
+          <div class="upload-image ta-c pb-md">
+            <input type="file" id="image" class="input--file js_image">
+            <label for="image">Elige una imagen</label>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="column ta-c">
-        <div class="js_controls controls">
-          <div class="row">
-            <div class="column">
-              <input type="text" class="js_lt" placeholder="Lower Treshold (0-1)">
-              <input type="text" class="js_ut" placeholder="Upper Treshold (0-1)">
+      <div class="row">
+        <div class="column ta-c">
+          <div class="js_controls controls">
+            <div class="row">
+              <div class="column">
+                <input type="text" class="js_lt" placeholder="Umbral Inferior(0-1)">
+                <input type="text" class="js_ut" placeholder="Umbral Superior (0-1)">
+              </div>
             </div>
           </div>
 
-          <div class="row">
-            <div class="column">
-              <button class="button js_submit">Encontrar los bordes</button>
-              <button class="button js_submit" onclick="loadDirectly()">Cargar directamente</button>
-              <button class="button cancel js_cancel">Cancel</button>
+            <div class="row">
+              <div class="column">
+                <button class="btn btn-primary js_submit m-1">Encontrar los bordes</button>
+                <button class="btn btn-primary js_submit m-1" onclick="loadDirectly()">Cargar directamente</button>
+                <button class="btn btn-primary cancel js_cancel m-1">Cancel</button>
+              </div>
             </div>
           </div>
         </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="column ta-c">
-        <div class="js_status"></div>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="column ta-c">
-        <div class="image-nav js_image-nav">
-          <ul>
-            <li data-target="js_image--from" class="image-nav__item" title="Start"></li>
-            <li data-target="js_image--grayscale" class="image-nav__item" title="Grayscale"></li>
-            <li data-target="js_image--blurred" class="image-nav__item" title="Blurred"></li>
-            <li data-target="js_image--x-derived" class="image-nav__item" title="X derived"></li>
-            <li data-target="js_image--y-derived" class="image-nav__item" title="Y derived"></li>
-            <li data-target="js_image--result" class="image-nav__item" title="Result"></li>
-          </ul>
+      <div class="row" style="display: none;">
+        <div class="column ta-c">
+          <div class="js_status"></div>
         </div>
       </div>
     </div>
 
-    <div class="row">
-      <div class="column result">
-        <section class="js_image--from">
-          <canvas class="image--from"></canvas>
-        </section>
+      <div class="row" style="display: none;">
+        <div class="column ta-c">
+          <div class="image-nav js_image-nav">
+            <ul>
+              <li data-target="js_image--from" class="image-nav__item" title="Start"></li>
+              <li data-target="js_image--grayscale" class="image-nav__item" title="Grayscale"></li>
+              <li data-target="js_image--blurred" class="image-nav__item" title="Blurred"></li>
+              <li data-target="js_image--x-derived" class="image-nav__item" title="X derived"></li>
+              <li data-target="js_image--y-derived" class="image-nav__item" title="Y derived"></li>
+              <li data-target="js_image--result" class="image-nav__item" title="Result"></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
 
-        <section class="js_image--grayscale">
-          <canvas class="image--grayscale"></canvas>
-        </section>
+      <div class="row">
+        <div class="column result">
+          <section class="js_image--from">
+            <canvas class="image--from"></canvas>
+          </section>
 
-        <section class="js_image--blurred">
-          <canvas class="image--blurred"></canvas>
-        </section>
+          <section class="js_image--grayscale">
+            <canvas class="image--grayscale"></canvas>
+          </section>
 
-        <section class="js_image--x-derived">
-          <canvas class="image--x-derived"></canvas>
-        </section>
+          <section class="js_image--blurred">
+            <canvas class="image--blurred"></canvas>
+          </section>
 
-        <section class="js_image--y-derived">
-          <canvas class="image--y-derived"></canvas>
-        </section>
+          <section class="js_image--x-derived">
+            <canvas class="image--x-derived"></canvas>
+          </section>
 
-        <section class="js_image--result">
-          <canvas class="image--result"></canvas>
-          <canvas id='image-hit-box' class='image-overlay'></canvas>
-          <br>
-          <button onclick='boxCounting()'>Empezar box counting</button>
-          <button onclick='drawCountedCells()'>Mostrar hit box</button>
-        </section>
+          <section class="js_image--y-derived">
+            <canvas class="image--y-derived"></canvas>
+          </section>
+
+          <section class="js_image--result">
+            <canvas class="image--result"></canvas>
+            <canvas id='image-hit-box' class='image-overlay'></canvas>         
+            <br>
+            <button onclick='boxCounting()' class="btn btn-primary m-1">Empezar box counting</button>
+            <button id="display_grid" onclick='drawCountedCells()' class="btn btn-primary m-1" disabled>Mostrar rejilla profundidad <span id="depth">0</span> </button>
+            <button id="clear_grid" onclick='clearCanvas()' class="btn btn-primary m-1" disabled>Borrar rejilla</button>
+          </section>
+        </div>
       </div>
     </div>
   </div>
