@@ -1,60 +1,859 @@
 <!DOCTYPE html>
 
 <html lang="es">
-
-<head>
-    <meta chartset="utf-8">
+  <head>
+    <meta chartset="utf-8" />
     <title>Cálculo dimension fractal</title>
     <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3"
+      crossorigin="anonymous"
+    />
 
-    <link href='./css/style.css' rel='stylesheet'>
+    <link href="./css/memoria.css" rel="stylesheet" />
     <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+      crossorigin="anonymous"
+    ></script>
 
     <!-- JQuery -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
     <!-- JS Box Counting Algorithm -->
-    <script src='./js/box-counting.js'></script>
+    <script src="./js/box-counting.js"></script>
 
     <!-- JS Canny Edge Detector -->
-    <script src='./js/worker.js'></script>
+    <script src="./js/worker.js"></script>
 
     <!-- JS Canny Edge Detector -->
     <!-- <script src='./js/main.js'></script> -->
 
     <!-- JS Canny Edge Detector -->
     <!-- <script src='./js/index.js'></script> -->
-</head>
+  </head>
 
-<body>
-
-      <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">Cálculo de la Dimensión Fractal</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarNav">
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a class="nav-link" href="./index.html">Inicio</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Memoria</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="./about-Us.html">Sobre Nosotros</a>
-              </li>
-            </ul>
-          </div>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+      <div class="container-fluid">
+        <a class="navbar-brand" href="#">Cálculo de la Dimensión Fractal</a>
+        <button
+          class="navbar-toggler"
+          type="button"
+          data-bs-toggle="collapse"
+          data-bs-target="#navbarNav"
+          aria-controls="navbarNav"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav">
+            <li class="nav-item">
+              <a class="nav-link" href="./index.html">Inicio</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link active" aria-current="page" href="#"
+                >Memoria</a
+              >
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="./about-Us.html">Sobre Nosotros</a>
+            </li>
+          </ul>
         </div>
-      </nav>
+      </div>
+    </nav>
 
+    <div class="memoria">
+      <p><img src="fig/etsii_us.png" alt="image" /></p>
+      <p>TRABAJO EN GRUPO</p>
+      <p>
+        <strong>Cálculo de la Dimensión Fractal</strong>
+        <strong>mediante <em>Box Counting</em></strong>
+      </p>
+      <p>
+        <span>Realizado por</span><br />
+        <strong>Andrés Carrasco Garzón,<br /> </strong>
+        <strong>con DNI, 26527416K<br /> </strong>
+        <strong>Jaime Emilio Sala Mascort,<br /> </strong>
+        <strong>con DNI, 30256459M<br /> </strong>
+      </p>
+      <p>
+        <strong>Dirigido por</strong><br />
+        <span>Juan Vicente Gutiérrez Santacreu</span><br />
+      </p>
+      <p><strong>Departamento de Matemática Aplicada I</strong></p>
+      <h1 id="cap:introduccion">Introducción</h1>
+      <p>
+        En este trabajo se trata el cálculo de la dimensión fractal de imágenes
+        mediante el algoritmo de <em>Box Counting</em>.
+      </p>
+      <p>
+        Para ello, se utilizará un algoritmo que procese la imagen introducida
+        por el usuario, detecte los bordes de dicha imagen, y calcule su
+        dimensión fractal mediante nuestra implementación del algoritmo de
+        <em>Box Counting</em>.
+      </p>
+      <p>
+        La implementación del proyecto se realizará mediante un ecosistema de
+        HTML5, CSS y JavaScript, que nos ofrecen realizar un entregable
+        multiplaforma que podrá ser usado utilizando un servidor local.
+      </p>
+      <p>
+        Además, el resultado se publicará en un repositorio de
+        <a href="https://github.com/Trocsamas/MC">GitHub</a>, y se usará
+        <a href="https://trocsamas.github.io/MC/">GitHub Pages</a> para que sea
+        abierto al público, pudiéndose ejecutar el proyecto sin necesidad de
+        realizar la instalación, ni ningún tipo de configuración.
+      </p>
+      <h1 id="cap:planificación">Conceptos teóricos</h1>
+      <p>
+        Antes de tratar el algoritmo de “Box Counting”, es necesario explicar
+        los conceptos teóricos en los que se basa este proyecto.
+      </p>
+      <h2 id="fractales">Fractales</h2>
+      <p>
+        Un fractal es una figura geométrica compleja, que a pesar de que nos
+        acerquemos a ella no se simplifica. Aunque no hay una definición
+        universal, si podemos saber algunas de sus propiedades como la propiedad
+        de autosimilitud, y la repetición de formas y figuras en distintas
+        escalas y un tipo de “dimensión”, concepto que ampliaremos
+        posteriormente.
+      </p>
+      <p>
+        Los fractales se dan en lugares inesperados en la naturalezas, desde la
+        agrupación de las algas de las marismas de San Fernando(Cádiz), Figura
+        <a
+          href="#fig:marismas de san fernando"
+          data-reference-type="ref"
+          data-reference="fig:marismas de san fernando"
+          >2.1</a
+        >, a gran escala, hasta los vasos sanguíneos de una persona, Figura
+        <a
+          href="#fig:capilares"
+          data-reference-type="ref"
+          data-reference="fig:capilares"
+          >2.2</a
+        >, y conociendo un poco sobre ellos pueden tener una aplicaciones
+        asombrosas.
+      </p>
+      <figure>
+        <img
+          src="fig/marismas_san_fernando.jpg"
+          alt="Marismas de San Fernando, fotografía tomada por Héctor Garrido"
+          id="fig:marismas de san fernando"
+          style="width: 50%"
+        />
+        <figcaption>
+          Marismas de San Fernando, fotografía tomada por Héctor Garrido<span
+            label="fig:marismas de san fernando"
+          ></span>
+        </figcaption>
+      </figure>
+      <figure>
+        <img
+          src="fig/capilares.jpg"
+          alt="Capilares Sanguíneos"
+          id="fig:capilares"
+          style="width: 50%"
+        />
+        <figcaption>
+          Capilares Sanguíneos<span label="fig:capilares"></span>
+        </figcaption>
+      </figure>
+      <p>
+        Además de cualquier concepto que podamos imaginar, como la alfombra de
+        Sierpinski, Figura
+        <a
+          href="#fig:construccion alfombra"
+          data-reference-type="ref"
+          data-reference="fig:construccion alfombra"
+          >2.7</a
+        >, donde a raíz de un cuadrado, vamos quitando progresivamente segmento
+        cuadrados de un tercio del lado del cuadrado.
+      </p>
+      <p>
+        <img
+          src="fig/alfombra1.png"
+          title="fig:"
+          alt="Construcción de la alfombra de Sierpinski"
+          id="fig:construccion alfombra"
+          style="width: 15%"
+        />
+        <img
+          src="fig/alfombra2.png"
+          title="fig:"
+          alt="Construcción de la alfombra de Sierpinski"
+          id="fig:construccion alfombra"
+          style="width: 15%"
+        />
+        <img
+          src="fig/alfombra3.png"
+          title="fig:"
+          alt="Construcción de la alfombra de Sierpinski"
+          id="fig:construccion alfombra"
+          style="width: 15%"
+        />
+        <img
+          src="fig/alfombra4.png"
+          title="fig:"
+          alt="Construcción de la alfombra de Sierpinski"
+          id="fig:construccion alfombra"
+          style="width: 15%"
+        />
+        <img
+          src="fig/alfombra5.png"
+          title="fig:"
+          alt="Construcción de la alfombra de Sierpinski"
+          id="fig:construccion alfombra"
+          style="width: 15%"
+        />
+      </p>
+      <h2 id="dimensión-fractal">Dimensión fractal</h2>
+      <p>
+        De forma opuesta a la idea de saber que es un fractal, que de forma
+        intuitiva los podemos encontrar, con el concepto de la dimensión fractal
+        pasa lo contrario. Todo el mundo sabe las tres dimensiones que ocupamos
+        día a día, de igual forma nos podemos imaginar objetos en dos
+        dimensiones y en una dimensión, teniendo un plano y un punto
+        respectivamente, sin embargo, no todo el mundo sabe que relación tiene
+        ese número, en principio entero, con el mundo real. Para ello vamos a
+        establecer unas condiciones previas:
+      </p>
+      <ol>
+        <li>
+          <p>
+            Se dice que
+            <span class="math inline"
+              ><em>C</em> = {<em>C</em><sub><em>i</em></sub
+              >}<sub><em>i</em> ∈ <em>I</em></sub></span
+            >
+            con
+            <span class="math inline"
+              ><em>C</em><sub><em>i</em></sub></span
+            >
+            perteneciente a <span class="math inline">ℝ<sup>2</sup></span
+            >, es un recubrimiento de
+            <span class="math inline"><em>A</em></span> si para
+            <span class="math inline"
+              ><em>x</em> ∈ <em>A</em> ∃<em>C</em><sub><em>i</em></sub
+              > ∈ <em>C</em></span
+            >
+            tal que
+            <span class="math inline"
+              ><em>x</em> ∈ <em>C</em><sub><em>i</em></sub></span
+            >. Ver Figura
+            <a
+              href="#fig:concepto1"
+              data-reference-type="ref"
+              data-reference="fig:concepto1"
+              >2.8</a
+            >
+          </p>
+          <figure>
+            <img
+              src="fig/Concepto 1.png"
+              alt="Recubrimiento finito de la Curva"
+              id="fig:concepto1"
+              style="width: 50%"
+            />
+            <figcaption>
+              Recubrimiento finito de la Curva<span
+                label="fig:concepto1"
+              ></span>
+            </figcaption>
+          </figure>
+        </li>
+        <li>
+          <p>
+            El recubrimiento se dice finito si cualquier cardinal
+            <span class="math inline"><em>I</em></span> es menos que infinito
+          </p>
+        </li>
+        <li>
+          <p>
+            Se dice que un recubrimiento
+            <span class="math inline"
+              ><em>D</em> = {<em>D</em><sub><em>j</em></sub
+              >}<sub><em>j</em> ∈ <em>I</em></sub></span
+            >
+            es mas fino que
+            <span class="math inline"
+              ><em>C</em> = {<em>C</em><sub><em>i</em></sub
+              >}<sub><em>i</em> ∈ <em>I</em></sub></span
+            >
+            si para todo
+            <span class="math inline"
+              ><em>C</em><sub><em>i</em></sub></span
+            >
+            existe un
+            <span class="math inline"
+              ><em>D</em><sub><em>j</em></sub></span
+            >
+            tal que
+            <span class="math inline"
+              ><em>D</em><sub><em>j</em></sub></span
+            >
+            pertenece a
+            <span class="math inline"
+              ><em>C</em><sub><em>i</em></sub></span
+            >. Ver Figura
+            <a
+              href="#fig:concepto3"
+              data-reference-type="ref"
+              data-reference="fig:concepto3"
+              >2.9</a
+            >
+          </p>
+          <figure>
+            <img
+              src="fig/Concepto 3.png"
+              alt="Recubrimiento más fino de la Curva"
+              id="fig:concepto3"
+              style="width: 50%"
+            />
+            <figcaption>
+              Recubrimiento más fino de la Curva<span
+                label="fig:concepto3"
+              ></span>
+            </figcaption>
+          </figure>
+        </li>
+        <li>
+          <p>
+            El orden de un recubrimiento
+            <span class="math inline"
+              ><em>C</em> = {<em>C</em><sub><em>i</em></sub
+              >}<sub><em>i</em> ∈ <em>I</em></sub></span
+            >
+            es el número máximo de intersección que tiene los puntos de
+            <span class="math inline"><em>A</em></span
+            >, para
+            <span class="math inline"
+              ><em>x</em> ∈ <em>A</em> ∃<em>C</em><sub><em>i</em></sub></span
+            >
+            tal que
+            <span class="math inline"
+              ><em>x</em> ∈ <em>C</em><sub><em>i</em></sub></span
+            >
+          </p>
+        </li>
+      </ol>
+      <p>
+        Dicho esto, podemos definir la dimensión topológica como el mínimo valor
+        de n-1 para el que todo recubrimiento admite un recubrimiento más fino
+        de orden no superior a n. También relacionado con el exponente del
+        factor de escalado en la dimensión.
+      </p>
+      <p>
+        <span class="math inline"
+          ><em>m</em><em>e</em><em>d</em><em>i</em><em>d</em
+          ><em>a</em>(<em>K</em> ⋅ <em>C</em>) = <em>K</em
+          ><sup><em>d</em><em>i</em><em>m</em>(<em>C</em>)</sup> ⋅ <em>m</em
+          ><em>e</em><em>d</em><em>i</em><em>d</em><em>a</em>(<em>C</em>)</span
+        >
+      </p>
+      <h2 id="cálculo-de-la-dimensión-fractal">
+        Cálculo de la dimensión fractal
+      </h2>
+      <p>
+        Despejando la fórmula anterior, podemos hallar la dimensión de cualquier
+        conjunto <span class="math inline"><em>C</em></span
+        >, además podemos saber que una dimensión no tiene por qué ser un número
+        entero, y la razón es que la dimensión es una forma de saber como un
+        conjunto cubre el espacio disponible.
+      </p>
+      <p>
+        Sin embargo, no podemos conocer con seguridad todos los conjuntos
+        <span class="math inline"><em>C</em></span
+        >, ya que pueden venir de la naturaleza, y no podamos conocer todos los
+        datos del conjunto, por tanto hay que hallar otra manera de calcular
+        esta dimensión.
+      </p>
+      <p>Para ello, usaremos el algoritmo de <em>Box Counting</em>.</p>
+      <h1 id="cap:analisis">Algoritmo de Box Counting</h1>
+      <p>
+        El algoritmo de <em>Box Counting</em>, o Conteo de Cajas, se trata de un
+        método para dividir los patrones complejos de un conjunto de datos, de
+        forma que podamos ir analizando los datos a distinta escala.
+      </p>
+      <p>
+        Para ello, definimos primero una cuadrícula sobre la imagen a tratar.
+        Esta cuadrícula será tan fina como determine
+        <span class="math inline"><em>ϵ</em></span
+        >, que nos dirá como de fina es la escala.
+      </p>
+      <p>
+        Posteriormente, debemos de contar todas las celdas donde la imagen tenga
+        un borde. Si, por ejemplo, tenemos un disco, nos debe indicar todo el
+        borde de dicho disco.
+      </p>
+      <p>
+        Iremos anotando los resultados y anotándolos junto al
+        <span class="math inline"><em>ϵ</em></span> de la rejilla, e iremos
+        avanzando hasta que los datos o la capacidad computacional de nuestro
+        dispositivo lo permita.
+      </p>
+      <figure>
+        <img
+          src="fig/box-counting.jpg"
+          alt="Algoritmo de Box Counting"
+          id="fig:aplicacion mandelbrot"
+          style="width: 70%"
+        />
+        <figcaption>
+          Algoritmo de <em>Box Counting</em
+          ><span label="fig:aplicacion mandelbrot"></span>
+        </figcaption>
+      </figure>
+      <p>
+        De esta forma, tendremos una tabla de resultados que podremos
+        interpretar de la siguiente forma:
+      </p>
+      <p>
+        El eje X representa las escalas utilizadas, y el eje Y representa el
+        número de celdas que tocan el borde de la figura para la escala
+        asociada.
+      </p>
+      <p>
+        Si representamos los datos, obtendremos una curva que representa el
+        crecimiento del número de celdas para las escalas, y este crecimiento es
+        la dimensión fractal de la figura.
+      </p>
+      <p>
+        Para facilitar los cálculos posteriores, los datos obtenidos los
+        representaremos en forma logarítmica (en ambos ejes), ya que, de esta
+        manera, la curva pasará a ser una recta de regresión lineal.
+      </p>
+      <p>
+        Con la recta podemos obtener fácilmente su pendiente, que nos indica el
+        crecimiento de ésta, y, por lo tanto, la dimensión fractal de la figura.
+      </p>
+      <h1 id="cap:diseño">Implementación</h1>
+      <p>
+        En primer lugar, hemos hecho uso de una librería externa llamada
+        <a href="https://github.com/petarjs/js-canny-edge-detector"
+          >“JS Canny Edge Detector”</a
+        >
+        para la detección de bordes, de forma que se pueda obtener el borde de
+        cualquier imagen dada, ajustando una serie de parámetros.
+      </p>
+      <p>
+        Seguidamente, nos llega la imagen tratada, ya sea por nosotros o bien
+        por el algoritmo de detección de bordes implementado en la librería.
+      </p>
+      <p>
+        Para implementar nuestro algoritmo, hemos optado por una estrategia
+        recursiva que divida cada cuadrante de la rejilla actual en otros cuatro
+        cuadrantes más, sucesivamente, de forma que nuestra rejilla se hace cada
+        vez más fina, hasta llegar al límite de la imagen proporcionada.
+      </p>
+      <p>
+        El límite de precisión del algoritmo viene dado por el lado menor de la
+        imagen divido entre la mayor potencia de dos cuyo resultado sea mayor a
+        2, esto es debido a que la estrategia que se ha optado para establecer
+        un borde se determina mediante una matriz mínima de 2x2 y esta disponga
+        de al menos un píxel blanco y otro negro. Sin embargo, dependiendo de la
+        potencia computacional de nuestro ordenador, puede que no sea posible
+        introducir imágenes demasiado grandes.
+      </p>
+      <p>
+        Una vez obtenidos el número de celdas que tocan el borde, y las escalas,
+        se aplica el logaritmo a todos los datos, y se calcula la recta que
+        minimiza el error cuadrático medio de todos los puntos respecto de la
+        recta.
+      </p>
+      <p>
+        Finalmente, se obtiene la pendiente de la recta, que representa la
+        dimensión fractal de la imagen.
+      </p>
+      <p>
+        También, para poder mostrar las celdas que tocan el borde de la imagen,
+        se almacena en una lista aquellas celdas que se contaron durante el
+        algoritmo de <em>Box Counting</em>. Al pulsar el botón que muestra las
+        celdas, simplemente se dibujan según la escala deseada en un “lienzo”
+        que solapa a la imagen, que tiene sus mismas dimensiones, y que es
+        ligeramente transparente.
+      </p>
+      <h1 id="ejemplo-de-uso">Ejemplo de uso</h1>
+      <p>
+        Para usar la aplicación se puede acceder a ella en
+        <a href="https://trocsamas.github.io/MC/">su página de GitHub</a>, o
+        descargándola y ejecutándola en un servidor local.
+      </p>
+      <p>
+        Una manera fácil de usarla en un servidor local, sería haciendo uso de
+        Visual Code Studio y mediante la extensión de
+        <a
+          href="https://marketplace.visualstudio.com/items?itemName=ritwickdey.LiveServer"
+          >Live Server</a
+        >
+        ejecutarla.
+      </p>
+      <p>
+        La página de “Inicio” contiene toda la funcionalidad de la aplicación,
+        mientras que las páginas “Memoria” y “Sobre Nosotros” sólo contiene
+        información acerca de los autores y el proyecto.
+      </p>
+      <p>
+        En la página de inicio, debemos de cargar una imagen de nuestro
+        dispositivo pulsando el botón “Elige una imagen”.
+      </p>
+      <figure>
+        <img
+          src="fig/ejemplo1.png"
+          alt="Página de inicio"
+          id="fig:aplicacion mandelbrot"
+          style="width: 70%"
+        />
+        <figcaption>
+          Página de inicio<span label="fig:aplicacion mandelbrot"></span>
+        </figcaption>
+      </figure>
+      <p>
+        Una vez seleccionada, aparecerán dos campos de entrada de texto. Estos
+        campos de texto deben ser números decimales comprendidos entre 0 y 1,
+        que representan el umbral inferior y superior para la detección de
+        bordes en la imagen.
+      </p>
+      <figure>
+        <img
+          src="fig/ejemplo2.png"
+          alt="Introducción de parámetros"
+          id="fig:aplicacion mandelbrot"
+          style="width: 70%"
+        />
+        <figcaption>
+          Introducción de parámetros<span
+            label="fig:aplicacion mandelbrot"
+          ></span>
+        </figcaption>
+      </figure>
+      <p>
+        Por ejemplo, para el triángulo de Sierpinski, en color, con parámetros
+        0.01 y 0.01, pulsamos el botón “Encontrar los bordes” y, tras un tiempo
+        de preprocesamiento, se nos mostrará los bordes de la imagen
+        introducida.
+      </p>
+      <p>
+        Para obtener mejores resultados, es necesario ajustar los parámetros de
+        umbral inferior y superior.
+      </p>
+      <figure>
+        <img
+          src="fig/ejemplo3.png"
+          alt="Bordes de la imagen introducida"
+          id="fig:aplicacion mandelbrot"
+          style="width: 70%"
+        />
+        <figcaption>
+          Bordes de la imagen introducida<span
+            label="fig:aplicacion mandelbrot"
+          ></span>
+        </figcaption>
+      </figure>
+      <p>
+        Una vez que ya tenemos los bordes, simplemente debemos pulsar el botón
+        “Calcular dimensión fractal”, que ejecutará el algoritmo de
+        <em>Box Counting</em>, y nos mostrará la dimensión fractal asociada a la
+        imagen.
+      </p>
+      <figure>
+        <img
+          src="fig/ejemplo4.png"
+          alt="Dimensión fractal de la imagen"
+          id="fig:aplicacion mandelbrot"
+          style="width: 70%"
+        />
+        <figcaption>
+          Dimensión fractal de la imagen<span
+            label="fig:aplicacion mandelbrot"
+          ></span>
+        </figcaption>
+      </figure>
+      <p>
+        También es posible visualizar las celdas que tocan los bordes de la
+        imagen, para las distintas escalas, pulsando el botón “Mostrar rejilla
+        profundidad”. Podemos ocultarlas pulsando el botón “Ocultar rejilla”.
+      </p>
+      <figure>
+        <img
+          src="fig/ejemplo5.png"
+          alt="Celdas que tocan el borde de la imagen"
+          id="fig:aplicacion mandelbrot"
+          style="width: 70%"
+        />
+        <figcaption>
+          Celdas que tocan el borde de la imagen<span
+            label="fig:aplicacion mandelbrot"
+          ></span>
+        </figcaption>
+      </figure>
+      <p>
+        Por último, si ya disponemos de una imagen preprocesada, es decir, que
+        ya muestra los bordes de la figura, podemos cargarla directamente
+        pulsando el botón “Cargar directamente”. En este caso, no es necesario
+        ajustar los parámetros de umbral.
+      </p>
+      <figure>
+        <img
+          src="fig/ejemplo6.png"
+          alt="Imagen ya preprocesada"
+          id="fig:aplicacion mandelbrot"
+          style="width: 70%"
+        />
+        <figcaption>
+          Imagen ya preprocesada<span label="fig:aplicacion mandelbrot"></span>
+        </figcaption>
+      </figure>
+      <h1 id="cap:implementacion">Pruebas</h1>
+      <p>
+        Para comprobar que el algoritmo funciona de manera adecuada, y da
+        resultados aceptables, hemos realizado algunas pruebas sobre figuras
+        fractales bien conocidas, y sobre una imagen de la naturaleza.
+      </p>
+      <h2 id="conjunto-de-mandelbrot">Conjunto de Mandelbrot</h2>
+      <p>
+        La primera figura que hemos analizado es el famoso conjunto de
+        Mandelbrot, eligiendo una imagen en color con dimensiones 1600x1200.
+      </p>
+      <p>
+        Hemos procesado la imagen con parámetros 0.0868, tanto para el umbral
+        inferior como superior, y hemos obtenido que la dimensión fractal
+        asociada a dicha imagen es 1.9990. La dimensión fractal real es 2, con
+        una diferencia de 0.01 respecto de nuestro resultado.
+      </p>
+      <p>
+        <img
+          src="fig/mandelbrot.jpg"
+          title="fig:"
+          alt="Conjunto de Mandelbrot, antes y después de ser procesado"
+          id="fig:aplicacion mandelbrot"
+          style="width: 40%"
+        />
+        <img
+          src="fig/mandelbrot(res).png"
+          title="fig:"
+          alt="Conjunto de Mandelbrot, antes y después de ser procesado"
+          id="fig:aplicacion mandelbrot"
+          style="width: 40%"
+        />
+      </p>
+      <h2 id="triángulo-de-sierpinski">Triángulo de Sierpinski</h2>
+      <p>
+        La segunda figura que hemos analizado es el triángulo de Sierpinski,
+        eligiendo una imagen en color con dimensiones 1024x887. Hemos procesado
+        la imagen con parámetros 0.01, tanto para el umbral inferior como
+        superior, y hemos obtenido que la dimensión fractal asociada a dicha
+        imagen es 1.5558. La dimensión fractal real es 1.5849, con una
+        diferencia de 0.0291 respecto de nuestro resultado.
+      </p>
+      <p>
+        <img
+          src="fig/triangulo_sierpinski.png"
+          title="fig:"
+          alt="Triángulo de Sierpinski, antes y después de ser procesado"
+          id="fig:aplicacion mandelbrot"
+          style="width: 40%"
+        />
+        <img
+          src="fig/triangulo_sierpinski(res).png"
+          title="fig:"
+          alt="Triángulo de Sierpinski, antes y después de ser procesado"
+          id="fig:aplicacion mandelbrot"
+          style="width: 40%"
+        />
+      </p>
+      <h2 id="curva-de-koch">Curva de Koch</h2>
+      <p>
+        La tercera figura que hemos analizado es la curva de Koch, eligiendo una
+        imagen, que no necesita de preprocesamiento, con dimensiones 12938x3750.
+      </p>
+      <p>
+        Dado que no es necesario detectar los bordes de la imagen, ya que ya los
+        bordes ya están procesados, sólo debemos ejecutar el algoritmo de
+        <em>Box Counting</em>, obteniendo que la dimensión fractal asociada a
+        dicha imagen es 1.2851. La dimensión fractal real es 1.2618, con una
+        diferencia de 0.0192 respecto de nuestro resultado.
+      </p>
+      <figure>
+        <img
+          src="fig/curva_koch.png"
+          alt="Curva de Koch"
+          id="fig:aplicacion mandelbrot"
+          style="width: 60%"
+        />
+        <figcaption>
+          Curva de Koch<span label="fig:aplicacion mandelbrot"></span>
+        </figcaption>
+      </figure>
+      <h2 id="marismas-de-san-fernando">Marismas de San Fernando</h2>
+      <p>
+        Por último, la cuarta imagen que hemos analizado es una fotografía de
+        las Marismas de San Fernando, eligiendo una imagen en color con
+        dimensiones 400x266.
+      </p>
+      <p>
+        Hemos procesado la imagen con parámetros 0.195 para el umbral inferior,
+        y 0.22 para el umbral superior, obteniendo que la dimensión fractal
+        asociada a dicha imagen es 1.9831.
+      </p>
+      <p>
+        <img
+          src="fig/marismas_san_fernando.jpg"
+          title="fig:"
+          alt="Marismas de San Fernando, antes y después de ser procesadas"
+          id="fig:aplicacion mandelbrot"
+          style="width: 40%"
+        />
+        <img
+          src="fig/marismas(res).png"
+          title="fig:"
+          alt="Marismas de San Fernando, antes y después de ser procesadas"
+          id="fig:aplicacion mandelbrot"
+          style="width: 40%"
+        />
+      </p>
+      <h1 id="cap:pruebas">Aplicaciones reales</h1>
+      <p>
+        Gracias a que los fractales cumplen con el principio matemático de
+        autosimilitud, si se identifica una estructura esencial en la naturaleza
+        y se aplican los principios de la geometría fractal para descomponerla,
+        se pueden hacer predicciones sobre cómo se comportará dicha estructura
+        en el futuro. Este importante principio nos proporciona una gran
+        cantidad de aplicaciones prácticas.
+      </p>
+      <p>
+        Una de la más destacada es la detección de células cancerígenas a través
+        del conocimiento de la dimensión fractal de los vasos capilares, ya que
+        es un factor uniforme en todo nuestro cuerpos, sin embargo, la aparición
+        de células cancerosas altera este factor, ya que debido a su aparición
+        se crean nuevos capilares en la dirección.
+      </p>
+      <p>
+        Se están haciendo estudios gracias a la dimensión fractal en el ámbito
+        de la medicina para detectar biomarcadores de la degeneración macular, y
+        otras muchas enfermedades como la osteoporosis, parkinson, alzheimer.
+      </p>
+      <p>
+        Otras que planteamos desde el grupo, podría intervenir en el ámbito
+        urbanístico, debido a que la distribución de las ciudades depende de
+        muchos factores, pero se podría hacer un estudio para ver la relación de
+        la dimensión fractal de la ciudad con distintos indicadores que ya
+        existen, como ruido, riqueza, antigüedad, entre otras.
+      </p>
+      <h1 id="cap:conclusiones">Conclusiones</h1>
+      <p>
+        Aunque pueda parecer que el algoritmo de <em>Box Counting</em> es la
+        solución perfecta para calcular dimensiones fractales, está lejos de ser
+        la realidad, ya que también presenta varios problemas.
+      </p>
+      <p>
+        El primero de todos, y el más notable, es que el algoritmo puede ser
+        exhaustivo, ya que conforme aumentamos el número de celdas (hacemos más
+        fina la rejilla), es necesario realizar más cálculos.
+      </p>
+      <p>
+        El número de cálculos puede llegar a ser tan grande, que sólo sea
+        posible realizarlo con un gran poder computacional, por lo que obtener
+        una gran precisión en la obtención de la dimensión fractal no está al
+        alcance de todo el mundo.
+      </p>
+      <p>
+        Otro problema, aún más grave que el anterior y más sutil, es que la
+        imagen elegida influirá notablemente en el resultado obtenido. Puede
+        influir negativamente de dos maneras: Que la calidad de la imagen sea
+        mala, y que tenga dimensiones demasiado pequeñas.
+      </p>
+      <p>
+        Si la calidad de la imagen es mala, probablemente habrá píxeles que se
+        verán borrosos y que complicarán la tarea de distinguir el borde de la
+        imagen, por lo que puede que el algoritmo detecte, accidentalmente,
+        píxeles que ni si quieran forman parte de éste.
+      </p>
+      <p>
+        Por ejemplo, para la misma figura, pero distinta calidad, se obtienen
+        los siguientes resultados con los mismos parámetros:
+      </p>
+      <p>
+        <img
+          src="fig/noborroso.jpg"
+          title="fig:"
+          alt="Triangulo de Sierpinski, calidad normal"
+          id="fig:aplicacion mandelbrot"
+          style="width: 30%"
+        />
+        <img
+          src="fig/noborroso(res).png"
+          title="fig:"
+          alt="Triangulo de Sierpinski, calidad normal"
+          id="fig:aplicacion mandelbrot"
+          style="width: 30%"
+        />
+      </p>
+      <p>
+        <img
+          src="fig/borroso.png"
+          title="fig:"
+          alt="Triangulo de Sierpinski, calidad mala"
+          id="fig:aplicacion mandelbrot"
+          style="width: 30%"
+        />
+        <img
+          src="fig/borroso(res).png"
+          title="fig:"
+          alt="Triangulo de Sierpinski, calidad mala"
+          id="fig:aplicacion mandelbrot"
+          style="width: 30%"
+        />
+      </p>
+      <p>
+        Por otro lado, si las dimensiones son demasiado pequeñas, no será
+        posible aumentar demasiado el número de celdas, es decir, hacer más fina
+        la rejilla. Esto se debe a que llegará un punto en el que habrá más
+        celdas que píxeles, y, por lo tanto, habría celdas que serían más
+        pequeñas que un píxel, que no es posible.
+      </p>
+      <p>
+        Sin embargo, a pesar de estos problemas, se pueden obtener resultados lo
+        suficientemente buenos como para obtener una primera idea de cuál puede
+        ser la dimensión fractal de una figura. Por lo tanto, más que una
+        solución definitiva, es una herramienta que “rápidamente” nos puede
+        aportar información sobre una figura difícil de analizar manualmente.
+      </p>
+      <p>
+        También es interesante como el algoritmo puede llevarse a otros campos,
+        más allá de las matemáticas, aunque desde nuestro ámbito y experiencia
+        salen de nuestros conocimientos, el potencial que se está encontrando en
+        la medicina y el control medioambiental es muy grande ya que detectar
+        biomarcadores es el primer paso para la solución de grande problemas.
+      </p>
+      <h1 id="cap:conclusiones">Bibliografía</h1>
+      <ul>
+        <li>
+          [1] Fractal dimension - box counting method, . URL<a href="http://fractalfoundation.org/"> http://fractalfoundation.org/ </a>OFC/OFC-10-5.html. </li>
+        <li>
+          [2] Fractals are typically not self-similar, . URL <a href="https://youtu.be/gB9n2gHsHN4">https://youtu.be/gB9n2gHsHN4</a>. </li>
+        <li>
+          [3] Recta de regresión de y sobre xr, . URL <a href="https://www.youtube.com/watch?v=wtjfwq1FbzA&abchannel=RubenSebastian">https://www.youtube.com/watch?v=wtjfwq1FbzA&abchannel=RubenSebastian</a>. </li>
+        <li>
+          [4] Héctor Garrido. Armonía fractal de do ̃nana y las marismas, 2020. URL <a href="http://armoniafractal.blogspot.com/">http://armoniafractal.blogspot.com/</a>. 
+        </li>
+        <li>
+          [5] Kathleen T. Alligood, Tim D.Sauer y James A. Yorke. Chaos. an introduction to dynamical systems. 1996.
+        </li>
+        <li>
+          [6] J.Navas, F.J. Esteban, J.Ruíz y J.M. Quesadn. La dimensi ́on fractal como metodo de diagnóstico del enfermedades neurodegenerativas., 2015. URL <a href="http://ucua.ujaen.es/jnavas/web_modelos/curso14_15/presentacion%20dimension%20sevilla%2015.pdf">http://ucua.ujaen.es/jnavas/web_modelos/curso14_15/presentacion%20dimension%20sevilla%2015.pdf</a>.
+        </li>
+        <li>
+          [7] Petar Slovic y Thad Rasmussen. Js canny edge detector, 2020. URL <a href="https://github.com/petarjs/js-canny-edge-detector">https://github.com/petarjs/js-canny-edge-detector</a>.
+        </li>
+      </ul>
+    </div>
   </body>
-
 </html>
