@@ -8,12 +8,17 @@
   pointer-events: none;
   z-index: 50;
 }
+ 
+.container{
+  padding-top: 10px;
+}
 
 .profile-column {
   float: left;
   width: 50%;
   margin-bottom: 16px;
-  padding: 0 8px;
+  padding: 4px;
+
 }
 
 .profile-img {
@@ -47,6 +52,8 @@
   text-align: center;
   cursor: pointer;
   width: 100%;
+  text-decoration: none;
+  border-radius: 10px;
 }
 
 .profile-button:hover {
