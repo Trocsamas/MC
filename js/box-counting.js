@@ -18,6 +18,11 @@ function boxCounting() {
   let canvas = canvasResult.getContext("2d").getImageData(0, 0, width, height);
   let canvasMatrix = rgbaToBw(canvas.data, width);
 
+  let bt1 = document.querySelector('#display_grid');
+  let bt2 = document.querySelector('#clear_grid');
+  bt1.disabled = false;
+  bt2.disabled = false;
+
   boxCountingResults = [1];
   countedCells = [];
   for (let i = 0; i < MAX_DEPTH; i++) {
@@ -39,6 +44,7 @@ function boxCounting() {
     x.push(Math.log(boxCountingResults[i]));
     y.push(Math.log(Math.pow(SCALING_FACTOR, i + 1)));
   }
+  depthToDisplay = 0;
   maxDisplayDepth = x.length+1;
 
   return getFractalDimension(x, y);

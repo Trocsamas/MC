@@ -16,7 +16,7 @@ const $cancel = document.querySelector('.js_cancel');
 const $result = document.querySelector('.result');
 let worker;
 function initWorker() {
-    worker = new Worker('./js/worker.js');
+    worker = new Worker('./js_canny_edge_detector/js/worker.js');
     worker.addEventListener('message', onWorkerMessage, false);
 }
 $file.addEventListener('change', event => {
