@@ -3,122 +3,118 @@
 <html lang="es">
 
 <head>
-    <meta chartset="utf-8">
-    <title>Cálculo dimension fractal</title>
-    <!-- Bootstrap CSS -->
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
-        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <meta chartset="utf-8">
+  <title>Cálculo dimension fractal</title>  
 
-    <link href="./css/global.css" rel="stylesheet">
-    <!-- Bootstrap JS -->
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
-        crossorigin="anonymous"></script>
+  <!-- Bootstrap .css -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
 
-    <!-- JQuery -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <!-- JS Canny Edge Detector .css -->
+  <link href="./js_canny_edge_detector/css/global.css" rel="stylesheet">
 
-    <!-- JS Box Counting Algorithm -->
-    <script src='./js/box-counting.js'></script>
+  <!-- Bootstrap .js -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
 
-    <!-- JS Canny Edge Detector -->
-    <script src='./js/worker.js'></script>
+  <!-- JQuery -->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 
-    <!-- JS Canny Edge Detector -->
-    <!-- <script src='./js/main.js'></script> -->
-
-    <!-- JS Canny Edge Detector -->
-    <!-- <script src='./js/index.js'></script> -->
+  <link href='css/style.css' rel='stylesheet'>
+  <script src='./js/box-counting.js'></script>
+  <script src='./js/index.js'></script>
+  <script src='./js/utils.js'></script>
 </head>
 
 <body>
-    <div class="container">      
-      <div class="row">
-        <div class="column">
-          <div class="upload-image ta-c pb-md">
-            <input type="file" id="image" class="input--file js_image">
-            <label for="image">Elige una imagen</label>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="column ta-c">
-          <div class="js_controls controls">
-            <div class="row">
-              <div class="column">
-                <input type="text" class="js_lt" placeholder="Lower Treshold (0-1)">
-                <input type="text" class="js_ut" placeholder="Upper Treshold (0-1)">
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="column">
-                <button class="button js_submit">Encontrar los bordes</button>
-                <button class="button js_submit" onclick="cargarDirectamente()">Cargar directamente</button>
-                <button class="button cancel js_cancel">Cancel</button>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="column ta-c">
-          <div class="js_status"></div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="column ta-c">
-          <div class="image-nav js_image-nav">
-            <ul>
-              <li data-target="js_image--from" class="image-nav__item" title="Start"></li>
-              <li data-target="js_image--grayscale" class="image-nav__item" title="Grayscale"></li>
-              <li data-target="js_image--blurred" class="image-nav__item" title="Blurred"></li>
-              <li data-target="js_image--x-derived" class="image-nav__item" title="X derived"></li>
-              <li data-target="js_image--y-derived" class="image-nav__item" title="Y derived"></li>
-              <li data-target="js_image--result" class="image-nav__item" title="Result"></li>
-            </ul>
-          </div>
-        </div>
-      </div>
-
-      <div class="row">
-        <div class="column result">
-          <section class="js_image--from">
-            <canvas class="image--from"></canvas>
-          </section>
-
-          <section class="js_image--grayscale">
-            <canvas class="image--grayscale"></canvas>
-          </section>
-
-          <section class="js_image--blurred">
-            <canvas class="image--blurred"></canvas>
-          </section>
-
-          <section class="js_image--x-derived">
-            <canvas class="image--x-derived"></canvas>
-          </section>
-
-          <section class="js_image--y-derived">
-            <canvas class="image--y-derived"></canvas>
-          </section>
-
-          <section class="js_image--result">
-            <canvas class="image--result"></canvas>
-            <canvas id='image-hit-box' class='solapar'></canvas>         
-            <br>
-            <button onclick='boxCounting()'>Empezar box counting</button>
-            <button onclick='drawHitBox()'>Mostrar hit box</button>
-          </section>
+  <div class="container">
+    <div class="row">
+      <div class="column">
+        <div class="upload-image ta-c pb-md">
+          <input type="file" id="image" class="input--file js_image">
+          <label for="image">Elige una imagen</label>
         </div>
       </div>
     </div>
 
-    <script src="./js/main.js"></script>
-    <script src="./js/index.js"></script>
-  </body>
+    <div class="row">
+      <div class="column ta-c">
+        <div class="js_controls controls">
+          <div class="row">
+            <div class="column">
+              <input type="text" class="js_lt" placeholder="Lower Treshold (0-1)">
+              <input type="text" class="js_ut" placeholder="Upper Treshold (0-1)">
+            </div>
+          </div>
+
+          <div class="row">
+            <div class="column">
+              <button class="button js_submit">Encontrar los bordes</button>
+              <button class="button js_submit" onclick="loadDirectly()">Cargar directamente</button>
+              <button class="button cancel js_cancel">Cancel</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column ta-c">
+        <div class="js_status"></div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column ta-c">
+        <div class="image-nav js_image-nav">
+          <ul>
+            <li data-target="js_image--from" class="image-nav__item" title="Start"></li>
+            <li data-target="js_image--grayscale" class="image-nav__item" title="Grayscale"></li>
+            <li data-target="js_image--blurred" class="image-nav__item" title="Blurred"></li>
+            <li data-target="js_image--x-derived" class="image-nav__item" title="X derived"></li>
+            <li data-target="js_image--y-derived" class="image-nav__item" title="Y derived"></li>
+            <li data-target="js_image--result" class="image-nav__item" title="Result"></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="column result">
+        <section class="js_image--from">
+          <canvas class="image--from"></canvas>
+        </section>
+
+        <section class="js_image--grayscale">
+          <canvas class="image--grayscale"></canvas>
+        </section>
+
+        <section class="js_image--blurred">
+          <canvas class="image--blurred"></canvas>
+        </section>
+
+        <section class="js_image--x-derived">
+          <canvas class="image--x-derived"></canvas>
+        </section>
+
+        <section class="js_image--y-derived">
+          <canvas class="image--y-derived"></canvas>
+        </section>
+
+        <section class="js_image--result">
+          <canvas class="image--result"></canvas>
+          <canvas id='image-hit-box' class='image-overlay'></canvas>
+          <br>
+          <button onclick='boxCounting()'>Empezar box counting</button>
+          <button onclick='drawCountedCells()'>Mostrar hit box</button>
+        </section>
+      </div>
+    </div>
+  </div>
+
+  <script src='./js_canny_edge_detector/js/main.js'></script>
+  <script src='./js_canny_edge_detector/js/index.js'></script>
+</body>
 
 </html>

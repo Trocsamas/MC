@@ -122,22 +122,3 @@ body {
 .result .image--active {
   display: inline-block;
 }
-
-.celda-activada {
-  background-color: rgba(252, 248, 5, 0.5);
-}
-
-.celda-desactivada {
-  background-color: none;
-}
-
-.solapar {
-  display: grid;
-  position: absolute;
-  top: 0px;
-  left: 0px;
-  right: 0px;
-  margin: auto;
-  pointer-events: none;
-  z-index: 50;
-}
