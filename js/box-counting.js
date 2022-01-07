@@ -47,7 +47,9 @@ function boxCounting() {
   depthToDisplay = 0;
   maxDisplayDepth = x.length+1;
 
-  return getFractalDimension(x, y);
+  let text = 'La dimensión fractal de la imagen es: ';
+  text += getFractalDimension(x, y).toFixed(4).toString();
+  document.getElementById('fractal-result').innerHTML = text;
 }
 
 function _boxCounting(matrix, iX, iY, fX, fY, depth) {
